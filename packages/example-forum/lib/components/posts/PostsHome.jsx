@@ -1,11 +1,11 @@
-import { Components, registerComponent } from 'meteor/vulcan:core';
-import React, { PropTypes, Component } from 'react';
+import { Components, registerComponent } from "meteor/vulcan:core";
+import React, { PropTypes, Component } from "react";
 
 const PostsHome = (props, context) => {
-  const terms = _.isEmpty(props.location && props.location.query) ? {view: 'top'}: props.location.query;
-  return <Components.PostsList terms={terms}/>
+  const terms = _.isEmpty(props.location && props.location.query) ? { view: "top" } : props.location.query;
+  return <Components.PostsList terms={terms} showHeader={false} />;
 };
 
 PostsHome.displayName = "PostsHome";
 
-registerComponent('PostsHome', PostsHome);
+registerComponent("PostsHome", PostsHome);
