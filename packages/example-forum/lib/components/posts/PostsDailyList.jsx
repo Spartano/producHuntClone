@@ -17,6 +17,7 @@ class PostsDailyList extends PureComponent {
       afterLoaded: props.terms.after,
       before: props.terms.before,
       loading: true,
+      limitForDays: 5
     };
   }
 
@@ -84,14 +85,33 @@ class PostsDailyList extends PureComponent {
     });
   }
 
+  getDateTerms = (date) => {
+    let {limitForDays} = this.state
+    return {
+      view: 'top',
+      after: moment(date).format('YYYY-MM-DD'),
+      before: moment(date).format('YYYY-MM-DD'),
+      limit: limitForDays
+    };
+  }
+
+  changeLimit = (limit) => {
+    this.setState({
+      limitForDays: this.state.limitForDays + limit
+    })
+  }
+  
+
+  
+
   render() {
     const posts = this.props.results;
     const dates = this.getDateRange(this.state.afterLoaded, this.state.before);
 
     return (
       <div className="posts-daily">
-        <Components.PostsListHeader />
-        {dates.map((date, index) => <Components.PostsDay key={index} number={index} date={date} posts={this.getDatePosts(posts, date)} networkStatus={this.props.networkStatus} currentUser={this.props.currentUser} />)}
+      
+        {dates.map((date, index) => <Components.PostsDay key={index} number={index} date={date} changeLimit={this.changeLimit} terms={this.getDateTerms(date)} currentUser={this.props.currentUser} />)}
         {this.state.loading? <Components.PostsLoading /> : <a className="posts-load-more posts-load-more-days" onClick={this.loadMoreDays}><FormattedMessage id="posts.load_more_days"/></a>}
       </div>
     )

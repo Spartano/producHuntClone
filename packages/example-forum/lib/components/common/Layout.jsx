@@ -28,6 +28,9 @@ const Layout = ({ currentUser, children, currentRoute }) => (
 
     <Components.Header />
 
+    <Components.Banner />
+    
+
     <div className="main">
       <Components.FlashMessages />
 
@@ -38,7 +41,7 @@ const Layout = ({ currentUser, children, currentRoute }) => (
       <Col xs={6}>{children}</Col>
       <Col xs={3}>
         <Panel header={"Title Panel"} bsStyle="primary">
-          Panel content
+        <Components.PostsViews />
         </Panel>
       </Col>
     </div>

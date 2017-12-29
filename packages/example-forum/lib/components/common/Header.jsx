@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withCurrentUser, getSetting, registerSetting, Components, registerComponent } from 'meteor/vulcan:core';
+import { Comments } from '../../modules/comments/index.js';
 
 const Header = (props, context) => {
   
@@ -25,7 +26,15 @@ const Header = (props, context) => {
           </div>
 
           <div className="nav-new-post">
+
+          <Components.ShowIf  check={Comments.options.mutations.new.check}>
+          
+         
             <Components.PostsNewButton/>
+
+
+        </Components.ShowIf>
+
           </div>
 
         </div>

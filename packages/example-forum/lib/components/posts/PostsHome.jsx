@@ -6,6 +6,8 @@ const PostsHome = (props, context) => {
   return <Components.PostsList terms={terms} showHeader={false} />;
 };
 
+
+
 PostsHome.displayName = "PostsHome";
 
 registerComponent("PostsHome", PostsHome);
